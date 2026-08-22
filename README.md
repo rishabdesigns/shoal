@@ -58,10 +58,9 @@ Reduced motion and a WebGL-less context both still keep every word on the page.
 
 ## License
 
-**Source-available, not open-source.** Copyright (c) 2026 Rishabh Joshi, all
+Copyright (c) 2026 Rishabh Joshi, all
 rights reserved. You are welcome to read this, study it, run it locally, and
-build your own implementation of the ideas in it. You may not copy it,
-redistribute it, or deploy it or a modified version of it. See
+build your own implementation of the ideas in it. See
 [LICENSE](LICENSE) for the full terms.
 
 Bundled third-party components keep their own licenses — see
