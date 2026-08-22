@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shoal — a tank that notices you</title>
+<meta name="description" content="A concept hero section: four hundred fish holding a school until your pointer comes near, then scattering and reforming.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="src/css/type.css">
+<link rel="stylesheet" href="src/css/hero.css">
+</head>
+<body>
+<main class="hero">
+  <canvas class="hero__canvas" aria-hidden="true"></canvas>
+
+  <div class="hero__layer">
+    <header class="hero__nav t-caps">
+      <div class="hero__mark"><b>Shoal</b></div>
+    </header>
+
+    <div class="hero__body">
+      <div class="hero__type">
+        <h1 class="hero__title t-display">They scatter<br>when you <em>arrive.</em></h1>
+        <p class="hero__lead t-sub">Four hundred boids, three rules, no leader, neighbours found on a uniform grid.</p>
+      </div>
+    </div>
+
+    <dl class="hero__stats">
+      <div class="hero__stat">
+        <dt class="t-caps">Agents</dt>
+        <dd class="t-num" data-live="agents">420</dd>
+      </div>
+      <div class="hero__stat">
+        <dt class="t-caps">Draw calls</dt>
+        <dd class="t-num" data-live="calls">9</dd>
+      </div>
+    </dl>
+  </div>
+</main>
+<script type="module" src="src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+Copyright (c) 2026 Rishabh Joshi. All rights reserved.
+
+This source code is published for reference and study. It is NOT open-source
+software. No license is granted for reuse or redistribution of the code,
+design, or artwork.
+
+PERMITTED
+
+  - Viewing and reading the source.
+  - Studying how it works and learning from the techniques it uses.
+  - Running it locally for inspection or testing.
+  - Writing your own independent implementation of the ideas or concepts
+    demonstrated here.
+
+NOT PERMITTED without prior written permission from the copyright holder
+
+  - Copying, reproducing or republishing this code, in whole or in
+    substantial part.
+  - Publishing, deploying, or otherwise distributing this work or a modified
+    version of it, whether or not it originated as a GitHub fork.
+  - Incorporating substantial portions into another project, commercial or
+    otherwise.
+  - Redistributing, selling, sublicensing, or packaging it as a template,
+    component, theme, or asset.
+  - Reusing the design, artwork, or other creative assets.
+
+IDEAS VERSUS EXPRESSION
+
+Copyright protects this particular expression, not the underlying ideas.
+Building something independently that achieves a similar effect is not
+restricted by this notice. Taking this implementation, renaming its
+identifiers and adjusting its parameters is.
+
+THIRD-PARTY COMPONENTS
+
+Components bundled in this repository are covered by their own licenses and
+are NOT subject to the terms above. See THIRD_PARTY_NOTICES.md.
+
+NO WARRANTY
+
+This software is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and noninfringement. In no event shall the
+copyright holder be liable for any claim, damages or other liability, whether
+in an action of contract, tort or otherwise, arising from, out of or in
+connection with the software or the use or other dealings in the software.
+
+PERMISSIONS
+
+For any use beyond what is permitted above, contact the copyright holder.

@@ -1,0 +1,48 @@
+/* The type scale. ONE source of truth for font-size in this project.
+   Nothing outside this file may declare a font-size in px/rem — responsive rules
+   change WHICH token an element uses, never the value of a token. */
+:root {
+  /* The headline, and nothing else. Stepped down from 8.6vw: at that size three
+     lines of display filled the left half of the frame edge to edge, the school
+     had nowhere to be, and the type read as a placeholder rather than a headline.
+     Dominance is a RATIO to the text around it, not an absolute — at 5.2vw it is
+     still five times the lead, which is all dominance ever needed. */
+  --fs-display-xl: clamp(2.5rem, 5.2vw, 5.75rem);
+  --fs-display-md: clamp(1.7rem, 2.9vw, 2.8rem);
+  --fs-h-sub:      clamp(1.15rem, 1.5vw, 1.5rem);
+  --fs-lead:       clamp(1.02rem, 1.15vw, 1.22rem);
+  --fs-body-sm:    clamp(.86rem, .92vw, .98rem);
+  --fs-num:        clamp(1.5rem, 2.1vw, 2.2rem);
+  --fs-micro:      clamp(.74rem, .8vw, .84rem);
+
+  /* A didone needs AIR that a grotesk does not. The old .92 was set for a tight
+     sans where the caps nearly touch by design; run a high-contrast serif that
+     close and the ascenders of one line collide with the descenders above it. */
+  --lh-display: 1.0;
+  --lh-sub:     1.28;
+  --lh-body:    1.55;
+
+  /* Near zero. Negative tracking is a grotesk correction — display serifs are
+     drawn with their spacing already in them, and pulling them tighter jams the
+     serifs of adjacent letters into each other. */
+  --tr-display: -.006em;
+  --tr-caps:     .22em;   /* tracked-out caps read over noise — an allowed lever */
+
+  /* Futura. Geometric, and on macOS a real system cut, so nothing is fetched. */
+  --ff-display: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif;
+  --ff-text:    ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ff-mono:    ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+/* Weight 700. A didone's hairlines are a quarter the width of its stems, and over
+   four hundred moving fish the hairlines are the part that disappears — the book
+   weight read as a headline with holes in it. The bold is a real cut on Didot and
+   Bodoni 72, so nothing is being synthesised. */
+.t-display { font-family: var(--ff-display); font-size: var(--fs-display-xl);
+             line-height: var(--lh-display); letter-spacing: var(--tr-display); font-weight: 700; }
+.t-sub     { font-family: var(--ff-text); font-size: var(--fs-h-sub); line-height: var(--lh-sub); font-weight: 400; }
+.t-lead    { font-family: var(--ff-text); font-size: var(--fs-lead); line-height: var(--lh-body); }
+.t-body-sm { font-family: var(--ff-text); font-size: var(--fs-body-sm); line-height: var(--lh-body); }
+.t-num     { font-family: var(--ff-mono); font-size: var(--fs-num); line-height: 1; font-variant-numeric: tabular-nums; }
+.t-caps    { font-family: var(--ff-mono); font-size: var(--fs-micro); line-height: 1.4;
+             letter-spacing: var(--tr-caps); text-transform: uppercase; }

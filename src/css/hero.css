@@ -1,0 +1,136 @@
+/* Hero layout. NO font-size is declared here — every size comes from a token in
+   type.css, which is the single source of truth. A responsive rule changes which
+   token an element uses, never the value of one. */
+:root {
+  --ink:        #f6fffa;   /* headline — the highest-luminance thing on screen */
+  --ink-strong: #dcf4e8;
+  --ink-soft:   #b3dbc9;
+  --ink-faint:  #86b2a1;
+  --accent:     #7ff0c4;
+  --deep:       #030e0d;
+
+  --gutter: clamp(1.4rem, 4vw, 4.5rem);
+  --grid: repeat(12, minmax(0, 1fr));
+  --col-gap: clamp(.9rem, 1.6vw, 1.6rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; background: var(--deep); color: var(--ink-strong); }
+body { font-family: var(--ff-text); -webkit-font-smoothing: antialiased; }
+
+.hero { position: relative; min-height: 100svh; overflow: hidden; }
+
+/* The scene sits behind everything and takes the pointer; the editorial layer
+   above it is pointer-transparent except where it needs not to be. */
+.hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.hero__layer {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  padding: clamp(1.2rem, 2.4vw, 2.2rem) var(--gutter) clamp(1.4rem, 3vw, 2.6rem);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(1.5rem, 4vh, 3.5rem);
+  pointer-events: none;
+}
+.hero__layer a { pointer-events: auto; }
+
+/* --- chrome: small and quiet. If nav competes with the hero the hierarchy is
+       inverted and nothing else will fix it. ---------------------------------- */
+.hero__nav {
+  display: grid; grid-template-columns: var(--grid); gap: var(--col-gap);
+  align-items: baseline;
+}
+.hero__mark { grid-column: 1 / span 4; color: var(--ink-strong); }
+.hero__mark b { font-weight: 600; letter-spacing: var(--tr-caps); }
+
+/* --- the headline block: CENTRED, AND SAT ON THE MARGINALIA ---------------- */
+/* Centred horizontally so the headline and the school share one axis, but pushed
+   to the FOOT of its row rather than floating in the middle of it. Type that sits
+   just above the rule reads as one block with the figures under it; type in the
+   dead centre of the frame reads as a caption pasted over a picture, and it also
+   lands on the densest part of the school. */
+.hero__body {
+  display: grid; grid-template-columns: var(--grid); gap: var(--col-gap);
+  align-content: end;
+  justify-items: center;
+  text-align: center;
+}
+/* The headline SIZES the block, and the standfirst is measured against it. A
+   centred lead wider than the headline above it reads as two unrelated centred
+   things; the `width: 0; min-width: 100%` pair is what lets the paragraph fill the
+   headline's width without being allowed to widen it. */
+.hero__type {
+  grid-column: 1 / span 12;
+  display: grid;
+  justify-items: center;
+  width: max-content;
+  max-width: 100%;
+}
+.hero__title {
+  margin: 0;
+  color: var(--ink);
+  text-wrap: balance;
+}
+/* Italic, because the face is now a serif and this is what a display serif is
+   FOR — a grotesk has no italic worth the name, which is why this was set upright
+   before. The accent colour stays; the emphasis is now carried by the drawing of
+   the letters as well as by hue. */
+.hero__title em { font-style: italic; color: var(--accent); }
+.hero__lead {
+  width: 0;
+  min-width: 100%;
+  margin: clamp(1rem, 2.2vh, 1.8rem) 0 0;
+  /* Body copy over a moving scene is bought with LUMINANCE and WEIGHT — the two
+     levers that cost the composition nothing — not with a plate, a scrim or a
+     blur underneath it. */
+  color: var(--ink);
+  /* Stepped up a token — `t-sub`, not `t-lead` — and half a weight. Centred, this
+     paragraph now sits over the middle of the school instead of over the quiet
+     left third, and the two levers that buy legibility over a moving ground
+     without putting anything behind the words are SIZE and WEIGHT. */
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+/* --- marginalia: declared positions on the grid, spread across the full measure,
+       never left-packed into a corner. ---------------------------------------- */
+.hero__stats {
+  display: grid; grid-template-columns: var(--grid); gap: var(--col-gap);
+  border-top: 1px solid rgba(214, 247, 230, .30);
+  padding-top: clamp(.8rem, 1.6vh, 1.2rem);
+  margin: 0;
+}
+/* Two figures, held at opposite ends of the measure. Marginalia packed together
+   at one end is a caption; spread across the full width it is a rule under the
+   composition, which is the job it is here to do. */
+.hero__stat { grid-column: 1 / span 3; margin: 0; }
+.hero__stat:last-child { grid-column: 10 / span 3; text-align: right; }
+/* The marginalia sits over the gravel bed now, which is the lightest surface in
+   the frame. Small type over a light, high-frequency ground is bought with weight
+   and pure white — the two levers left once size is fixed by the scale. */
+.hero__stat dt { color: var(--ink-soft); font-weight: 500; margin: 0 0 .35em; }
+.hero__stat dd { margin: 0; color: var(--ink); font-weight: 500; }
+
+/* --- responsive: swap TOKENS, never values -------------------------------- */
+@media (max-width: 900px) {
+  .hero__mark { grid-column: span 6; }
+  .hero__stat { grid-column: 1 / span 6; }
+  .hero__stat:last-child { grid-column: 7 / span 6; text-align: right; }
+}
+@media (max-width: 560px) {
+  /* Micro type over a busy moving scene needs more than micro type on paper —
+     stepping the token up is the legibility fix, not a backdrop. */
+  .hero__stat dt { font-size: var(--fs-body-sm); }
+  .hero__mark { grid-column: 1 / span 12; }
+}
+
+/* --- no-WebGL / reduced motion: the words survive intact ------------------- */
+.hero[data-fallback="true"] {
+  background:
+    radial-gradient(120% 80% at 50% 0%, #0e3a2f 0%, #07211c 42%, #030e0d 100%);
+}
+.hero[data-fallback="true"] .hero__canvas { display: none; }
+
